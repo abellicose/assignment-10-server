@@ -1,6 +1,16 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri =
+  process.env.DB_URI ||
+  (process.env.DB_CLUSTER
+    ? `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}/?retryWrites=true&w=majority&appName=Cluster0`
+    : null);
+
+if (!uri) {
+  throw new Error(
+    "Missing MongoDB connection. Set DB_URI to your full Atlas connection string, or set DB_CLUSTER (with DB_USER and DB_PASS)."
+  );
+}
 
 const client = new MongoClient(uri, {
   serverApi: {
