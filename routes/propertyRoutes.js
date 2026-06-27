@@ -13,12 +13,19 @@ router.get("/", async (req, res) => {
     page = "1",
     limit = "9",
     status = "Approved",
+    min = "",
+    max = "",
   } = req.query;
 
   const query = {};
   if (status) query.status = status;
   if (search) query.location = { $regex: search, $options: "i" };
   if (type) query.type = type;
+  if (min || max) {
+    query.rent = {};
+    if (min) query.rent.$gte = Number(min);
+    if (max) query.rent.$lte = Number(max);
+  }
 
   const sortOption = {};
   if (sort === "asc") sortOption.rent = 1;
