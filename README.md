@@ -6,7 +6,12 @@ Stripe payments, reviews, and favorites.
 
 ## Live API
 
-> Set after deployment (e.g. Vercel): `https://<your-server>.vercel.app`
+https://assignment-10-server-two-eta.vercel.app
+
+## Repositories
+
+- Client: https://github.com/abellicose/assignment-10-client
+- Server: https://github.com/abellicose/assignment-10-server
 
 ## Tech Stack
 
